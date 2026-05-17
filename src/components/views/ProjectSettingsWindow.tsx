@@ -12,7 +12,6 @@ interface ProjectSettingsWindowProps {
 const ProjectSettingsWindow = ({ projectId, onClose }: ProjectSettingsWindowProps) => {
   const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('preview');
   const [content, setContent] = useState<string>('');
-  const [hasChanges, setHasChanges] = useState(false);
 
   const loadHarnessContent = useDesktopStore(state => state.loadHarnessContent);
   const saveHarnessContent = useDesktopStore(state => state.saveHarnessContent);
@@ -38,21 +37,9 @@ const ProjectSettingsWindow = ({ projectId, onClose }: ProjectSettingsWindowProp
   }, [projectSettingsContent, projectId]);
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-    setHasChanges(true);
-  };
-
-  const handleSave = () => {
-    saveHarnessContent(projectId, content);
-    setHasChanges(false);
-  };
-
-  const handleCancel = () => {
-    if (hasChanges) {
-      const confirm = window.confirm('You have unsaved changes. Are you sure you want to close?');
-      if (!confirm) return;
-    }
-    onClose();
+    const nextContent = e.target.value;
+    setContent(nextContent);
+    saveHarnessContent(projectId, nextContent);
   };
 
   const renderedPreview = renderMarkdown(content);
@@ -70,10 +57,11 @@ const ProjectSettingsWindow = ({ projectId, onClose }: ProjectSettingsWindowProp
         className={`${styles.titleBar} ${isDragging ? '' : ''}`}
         onMouseDown={handleMouseDown}
       >
-        <div className={styles.closeButton} onClick={handleCancel} />
+        <div className={styles.closeButton} onClick={onClose} />
         <div className={styles.title}>
           HARNESS.md - {project?.name || 'Project Settings'}
         </div>
+        <div className={styles.saveStatus}>Auto-saved</div>
       </div>
 
       <div className={styles.tabSwitcher}>
@@ -124,12 +112,9 @@ const ProjectSettingsWindow = ({ projectId, onClose }: ProjectSettingsWindowProp
       </div>
 
       <div className={styles.actionBar}>
-        <button className={styles.cancelButton} onClick={handleCancel}>
-          Cancel
-        </button>
-        <button className={styles.saveButton} onClick={handleSave}>
-          {hasChanges ? 'Save Changes *' : 'Save Changes'}
-        </button>
+        <span className={styles.autosaveNote}>
+          Changes save automatically on this device.
+        </span>
       </div>
     </div>
   );

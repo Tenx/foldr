@@ -5,6 +5,11 @@ import { generateHarnessContent, parseHarnessMarkdown } from '../utils/harnessPa
 
 const STORAGE_KEY = 'foldr.desktopState.v1';
 
+interface PersistedDesktopState {
+  icons: DesktopIcon[];
+  projectSettingsContent: Record<string, string>;
+}
+
 interface DesktopStore {
   icons: DesktopIcon[];
   projectSettingsContent: Record<string, string>; // projectId -> markdown content
@@ -48,34 +53,71 @@ const reviveDates = (value: unknown): unknown => {
   return value;
 };
 
-const loadPersistedIcons = (): DesktopIcon[] => {
+const loadPersistedState = (): PersistedDesktopState => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) return mockDesktopIcons;
+    if (!stored) {
+      return {
+        icons: mockDesktopIcons,
+        projectSettingsContent: {}
+      };
+    }
 
     const parsed = JSON.parse(stored);
-    if (!Array.isArray(parsed)) return mockDesktopIcons;
+    if (Array.isArray(parsed)) {
+      return {
+        icons: reviveDates(parsed) as DesktopIcon[],
+        projectSettingsContent: {}
+      };
+    }
 
-    return reviveDates(parsed) as DesktopIcon[];
+    if (!parsed || typeof parsed !== 'object' || !Array.isArray(parsed.icons)) {
+      return {
+        icons: mockDesktopIcons,
+        projectSettingsContent: {}
+      };
+    }
+
+    return {
+      icons: reviveDates(parsed.icons) as DesktopIcon[],
+      projectSettingsContent:
+        parsed.projectSettingsContent && typeof parsed.projectSettingsContent === 'object'
+          ? parsed.projectSettingsContent
+          : {}
+    };
   } catch {
-    return mockDesktopIcons;
+    return {
+      icons: mockDesktopIcons,
+      projectSettingsContent: {}
+    };
   }
 };
 
-const persistIcons = (icons: DesktopIcon[]) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(icons));
+const initialState = loadPersistedState();
+
+const persistDesktopState = (
+  icons: DesktopIcon[],
+  projectSettingsContent: Record<string, string>
+) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    icons,
+    projectSettingsContent
+  }));
 };
 
-const withPersistedIcons = (icons: DesktopIcon[]) => {
-  persistIcons(icons);
+const withPersistedIcons = (
+  icons: DesktopIcon[],
+  projectSettingsContent: Record<string, string>
+) => {
+  persistDesktopState(icons, projectSettingsContent);
   return { icons };
 };
 
 export const useDesktopStore = create<DesktopStore>((set, get) => ({
-  icons: loadPersistedIcons(),
-  projectSettingsContent: {},
+  icons: initialState.icons,
+  projectSettingsContent: initialState.projectSettingsContent,
 
-  setIcons: (icons) => set(withPersistedIcons(icons)),
+  setIcons: (icons) => set((state) => withPersistedIcons(icons, state.projectSettingsContent)),
 
   selectIcon: (id) => set((state) => ({
     icons: state.icons.map(icon => ({
@@ -96,7 +138,7 @@ export const useDesktopStore = create<DesktopStore>((set, get) => ({
       icon.id === id ? { ...icon, position: { x, y } } : icon
     );
 
-    return withPersistedIcons(icons);
+    return withPersistedIcons(icons, state.projectSettingsContent);
   }),
 
   updateIcon: (id, updatedIcon) => set((state) => {
@@ -104,22 +146,28 @@ export const useDesktopStore = create<DesktopStore>((set, get) => ({
       icon.id === id ? updatedIcon : icon
     );
 
-    return withPersistedIcons(icons);
+    return withPersistedIcons(icons, state.projectSettingsContent);
   }),
 
   loadHarnessContent: async (projectId) => {
+    if (get().projectSettingsContent[projectId]) return;
+
     const icon = get().icons.find(i => i.id === projectId);
     if (!icon?.data) return;
 
     // Generate content from project data
     const content = generateHarnessContent(icon.data);
 
-    set(state => ({
-      projectSettingsContent: {
+    set(state => {
+      const projectSettingsContent = {
         ...state.projectSettingsContent,
         [projectId]: content
-      }
-    }));
+      };
+
+      persistDesktopState(state.icons, projectSettingsContent);
+
+      return { projectSettingsContent };
+    });
   },
 
   saveHarnessContent: (projectId, content) => {
@@ -139,14 +187,16 @@ export const useDesktopStore = create<DesktopStore>((set, get) => ({
           : icon
       );
 
-      persistIcons(icons);
+      const projectSettingsContent = {
+        ...state.projectSettingsContent,
+        [projectId]: content
+      };
+
+      persistDesktopState(icons, projectSettingsContent);
 
       return {
         icons,
-        projectSettingsContent: {
-          ...state.projectSettingsContent,
-          [projectId]: content
-        }
+        projectSettingsContent
       };
     });
   },
@@ -165,7 +215,7 @@ export const useDesktopStore = create<DesktopStore>((set, get) => ({
           : icon
       );
 
-      return withPersistedIcons(icons);
+      return withPersistedIcons(icons, state.projectSettingsContent);
     });
   }
 }));
