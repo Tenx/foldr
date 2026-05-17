@@ -9,3 +9,10 @@ coverage/
 .vite/
 .claude/
 ~$*
+
+# Local presentation/demo artifacts
+Frontend-Slides-Presentation.pptx
+foldr-*.html
+style-preview-*.html
+frontend-slides-presentation.md
+create_presentation.py
