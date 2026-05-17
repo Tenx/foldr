@@ -1,0 +1,105 @@
+.infoPanel {
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  width: 240px;
+  background: var(--mac-white);
+  border: var(--border-medium);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  z-index: calc(var(--z-icons) + 5);
+  font-family: var(--font-system);
+}
+
+.header {
+  background: var(--pattern-title-bar-active);
+  border-bottom: var(--border-thin);
+  padding: 6px 12px;
+  font-size: var(--font-size-window-title);
+  font-weight: bold;
+  text-align: center;
+}
+
+.content {
+  padding: 12px;
+}
+
+.projectName {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: var(--border-thin);
+}
+
+.metadata {
+  margin-bottom: 12px;
+}
+
+.metadataItem {
+  font-size: 11px;
+  margin-bottom: 6px;
+  display: flex;
+  gap: 4px;
+}
+
+.metadataLabel {
+  font-weight: bold;
+}
+
+.metadataValue {
+  color: #333;
+}
+
+.stats {
+  margin-bottom: 12px;
+  padding-top: 8px;
+  border-top: var(--border-thin);
+}
+
+.statItem {
+  font-size: 11px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.statLabel {
+  color: #333;
+}
+
+.statValue {
+  font-weight: bold;
+}
+
+.actions {
+  padding-top: 12px;
+  border-top: var(--border-thin);
+}
+
+.settingsButton {
+  width: 100%;
+  font-family: var(--font-system);
+  font-size: var(--font-size-button);
+  padding: 8px;
+  background: var(--mac-white);
+  border: var(--border-medium);
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.settingsButton:hover {
+  background: var(--mac-gray-light);
+}
+
+.settingsButton:active {
+  background: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.icon {
+  font-size: 14px;
+}

@@ -1,0 +1,137 @@
+.window {
+  position: absolute;
+  background-color: var(--mac-white);
+  border: var(--border-medium);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  min-height: 100px;
+}
+
+.titleBar {
+  height: var(--window-title-bar-height);
+  background: var(--pattern-title-bar-inactive);
+  border-bottom: var(--border-medium);
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  cursor: move;
+  user-select: none;
+  position: relative;
+}
+
+.window.active .titleBar {
+  background: var(--pattern-title-bar-active);
+}
+
+.closeBox {
+  width: 11px;
+  height: 11px;
+  border: var(--border-thin);
+  background-color: var(--mac-white);
+  cursor: pointer;
+  margin-right: 6px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.closeBox::before,
+.closeBox::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 1px;
+  background-color: var(--mac-black);
+}
+
+.closeBox::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.closeBox::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-system);
+  font-size: var(--font-size-window-title);
+  font-weight: bold;
+  color: var(--mac-black);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 15px;
+}
+
+.content {
+  flex: 1;
+  overflow: auto;
+  background-color: var(--mac-white);
+  padding: 12px;
+  font-family: var(--font-system);
+  font-size: var(--font-size-content);
+  line-height: 1.4;
+}
+
+.agentList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.agentItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border: var(--border-thin);
+  background-color: var(--mac-white);
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.agentItem:hover {
+  background-color: var(--mac-gray-light);
+}
+
+.agentStatus {
+  width: 10px;
+  height: 10px;
+  border: var(--border-thin);
+  flex-shrink: 0;
+}
+
+.agentStatus.active {
+  background-color: var(--mac-black);
+}
+
+.agentStatus.inactive {
+  background-color: var(--mac-white);
+}
+
+.agentStatus.error {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--mac-black) 0px,
+    var(--mac-black) 2px,
+    var(--mac-white) 2px,
+    var(--mac-white) 4px
+  );
+}
+
+.agentName {
+  font-weight: bold;
+  flex: 1;
+}
+
+.emptyState {
+  padding: 32px 20px;
+  text-align: center;
+  color: #666;
+  font-size: var(--font-size-content);
+}

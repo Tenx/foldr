@@ -1,0 +1,17 @@
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  background: var(--pattern-desktop);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.desktopContent {
+  position: absolute;
+  top: var(--menu-bar-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--desktop-padding);
+}

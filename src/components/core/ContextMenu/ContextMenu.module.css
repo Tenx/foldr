@@ -1,0 +1,59 @@
+.contextMenu {
+  position: fixed;
+  background: var(--mac-white);
+  border: var(--border-medium);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+  z-index: calc(var(--z-windows-base) + 50);
+  min-width: 180px;
+  user-select: none;
+}
+
+.menuItem {
+  font-family: var(--font-system);
+  font-size: var(--font-size-content);
+  padding: 6px 16px;
+  cursor: pointer;
+  border-bottom: var(--border-thin);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--mac-white);
+  transition: background 0.1s;
+}
+
+.menuItem:last-child {
+  border-bottom: none;
+}
+
+.menuItem:hover {
+  background: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.menuItem:active {
+  background: var(--mac-gray-dark);
+}
+
+.menuIcon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.menuLabel {
+  flex: 1;
+}
+
+.menuShortcut {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.separator {
+  height: 1px;
+  background: var(--mac-black);
+  margin: 2px 0;
+}

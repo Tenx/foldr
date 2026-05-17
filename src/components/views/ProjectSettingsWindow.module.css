@@ -1,0 +1,269 @@
+.settingsWindow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 650px;
+  background: var(--mac-white);
+  border: var(--border-medium);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  z-index: var(--z-windows-base);
+}
+
+.titleBar {
+  height: var(--window-title-bar-height);
+  background: var(--pattern-title-bar-active);
+  border-bottom: var(--border-thin);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  cursor: move;
+  user-select: none;
+}
+
+.titleBar.inactive {
+  background: var(--pattern-title-bar-inactive);
+}
+
+.closeButton {
+  width: 12px;
+  height: 12px;
+  border: var(--border-thin);
+  background: var(--mac-white);
+  cursor: pointer;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.closeButton:hover {
+  background: var(--mac-black);
+}
+
+.title {
+  font-family: var(--font-system);
+  font-size: var(--font-size-window-title);
+  font-weight: bold;
+  color: var(--mac-black);
+  flex: 1;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.tabSwitcher {
+  display: flex;
+  gap: 0;
+  border-bottom: var(--border-thin);
+  background: var(--mac-gray-light);
+  padding: 0;
+}
+
+.tab {
+  font-family: var(--font-system);
+  font-size: var(--font-size-content);
+  padding: 8px 24px;
+  background: var(--mac-gray-medium);
+  border: none;
+  border-right: var(--border-thin);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.tab:hover {
+  background: var(--mac-gray-dark);
+}
+
+.tab.active {
+  background: var(--mac-white);
+  border-bottom: 2px solid var(--mac-black);
+}
+
+.contentArea {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.splitView {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.editorPane {
+  flex: 1;
+  border-right: var(--border-thin);
+  display: flex;
+  flex-direction: column;
+}
+
+.previewPane {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background: var(--mac-white);
+}
+
+.editor {
+  flex: 1;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 12px;
+  border: none;
+  resize: none;
+  background: var(--mac-white);
+  color: var(--mac-black);
+  overflow-y: auto;
+}
+
+.editor:focus {
+  outline: none;
+  border: none;
+}
+
+.lineNumbers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 12px 8px;
+  background: var(--mac-gray-light);
+  border-right: var(--border-thin);
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #666;
+  user-select: none;
+  text-align: right;
+  min-width: 40px;
+}
+
+.preview {
+  font-family: var(--font-system);
+  font-size: var(--font-size-content);
+  line-height: var(--line-height);
+  color: var(--mac-black);
+}
+
+.preview h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 16px 0 12px 0;
+  border-bottom: 2px solid var(--mac-black);
+  padding-bottom: 4px;
+}
+
+.preview h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 14px 0 10px 0;
+}
+
+.preview h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 12px 0 8px 0;
+}
+
+.preview p {
+  margin: 8px 0;
+}
+
+.preview ul, .preview ol {
+  margin: 8px 0;
+  padding-left: 24px;
+}
+
+.preview li {
+  margin: 4px 0;
+}
+
+.preview code {
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 11px;
+  background: var(--mac-gray-light);
+  padding: 2px 6px;
+  border: var(--border-thin);
+}
+
+.preview pre {
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 11px;
+  background: var(--mac-gray-light);
+  padding: 12px;
+  border: var(--border-thin);
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.preview pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.preview strong {
+  font-weight: bold;
+}
+
+.preview em {
+  font-style: italic;
+}
+
+.preview a {
+  color: var(--mac-black);
+  text-decoration: underline;
+}
+
+.preview a:hover {
+  text-decoration: none;
+}
+
+.actionBar {
+  border-top: var(--border-thin);
+  padding: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: var(--mac-gray-light);
+}
+
+.saveButton {
+  font-family: var(--font-system);
+  font-size: var(--font-size-button);
+  padding: 6px 20px;
+  background: var(--mac-white);
+  border: var(--border-medium);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.saveButton:hover {
+  background: var(--mac-gray-light);
+}
+
+.saveButton:active {
+  background: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.cancelButton {
+  font-family: var(--font-system);
+  font-size: var(--font-size-button);
+  padding: 6px 20px;
+  background: var(--mac-white);
+  border: var(--border-medium);
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background: var(--mac-gray-light);
+}
+
+.singlePane {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}

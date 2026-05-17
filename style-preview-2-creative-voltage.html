@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview 2: Creative Voltage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .split-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .panel-left {
+            flex: 1;
+            background: #0066ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Halftone pattern */
+        .panel-left::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+
+        .panel-right {
+            flex: 1;
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .content-left {
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+
+        .neon-badge {
+            display: inline-block;
+            background: #d4ff00;
+            color: #1a1a2e;
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(212, 255, 0, 0.5);
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .content-right {
+            color: white;
+            text-align: center;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .icon-box {
+            width: clamp(60px, 10vw, 80px);
+            height: clamp(60px, 10vw, 80px);
+            background: #0066ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .icon-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .tagline {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: clamp(0.85rem, 1.5vw, 1rem);
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        .year {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            color: rgba(0, 102, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="split-container">
+        <div class="panel-left">
+            <div class="content-left">
+                <div class="neon-badge">⚡ Creative Voltage</div>
+                <h1>FOLDR</h1>
+                <div class="subtitle">Retro AI Management</div>
+            </div>
+        </div>
+
+        <div class="panel-right">
+            <div class="content-right">
+                <div class="icon-grid">
+                    <div class="icon-box">📁</div>
+                    <div class="icon-box">🤖</div>
+                    <div class="icon-box">✨</div>
+                </div>
+
+                <div class="tagline">
+                    1984 meets 2026:<br>
+                    Manage agents like folders
+                </div>
+
+                <div class="description">
+                    Drag. Drop. Connect.<br>
+                    No learning curve.
+                </div>
+            </div>
+
+            <div class="year">84</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview 3: Vintage Editorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: #f5f3ee;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Abstract geometric shapes */
+        .shape-1 {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: clamp(150px, 20vw, 250px);
+            height: clamp(150px, 20vw, 250px);
+            border: 3px solid #e8d4c0;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .shape-2 {
+            position: absolute;
+            bottom: 15%;
+            left: 8%;
+            width: clamp(60px, 10vw, 100px);
+            height: 3px;
+            background: #e8d4c0;
+            transform: rotate(-45deg);
+            opacity: 0.5;
+        }
+
+        .shape-3 {
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 20px;
+            height: 20px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .container {
+            max-width: 850px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 400;
+            color: #555;
+            margin-bottom: 2.5rem;
+            line-height: 1.4;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-box {
+            display: inline-block;
+            border: 3px solid #1a1a1a;
+            padding: 1rem 2.5rem;
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-box:hover {
+            background: #1a1a1a;
+            color: #f5f3ee;
+        }
+
+        .tagline {
+            font-size: clamp(0.85rem, 1.5vw, 1rem);
+            color: #555;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .tagline em {
+            font-style: italic;
+            color: #1a1a1a;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="shape-1"></div>
+    <div class="shape-2"></div>
+    <div class="shape-3"></div>
+
+    <div class="container">
+        <div class="eyebrow">Vintage Editorial Preview</div>
+
+        <h1>Foldr</h1>
+
+        <div class="subtitle">
+            Because managing AI agents shouldn't feel like rocket science
+        </div>
+
+        <div class="cta-box">
+            Drag. Drop. Done.
+        </div>
+
+        <div class="tagline">
+            Inspired by <em>Macintosh System 1 (1984)</em>.<br>
+            Built for the agentic future.
+        </div>
+
+        <div class="footer">
+            A witty approach to agent management
+        </div>
+    </div>
+</body>
+</html>

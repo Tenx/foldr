@@ -1,0 +1,17 @@
+/* Font declarations for Mac System 1 style fonts */
+
+/* Using system monospace as fallback for Chicago font */
+/* In production, replace with actual Chicago bitmap font */
+
+@font-face {
+  font-family: 'Chicago';
+  src: local('Courier New'), local('Monaco'), local('monospace');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Ensure crisp pixel rendering */
+body {
+  font-family: var(--font-system);
+  font-size: 12px;
+}

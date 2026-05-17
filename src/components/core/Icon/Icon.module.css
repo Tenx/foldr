@@ -1,0 +1,46 @@
+.icon {
+  position: absolute;
+  width: var(--icon-label-max-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  z-index: var(--z-icons);
+}
+
+.icon.dragging {
+  cursor: grabbing;
+  z-index: calc(var(--z-icons) + 1);
+}
+
+.iconImage {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-bottom: 4px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.icon.dragging .iconImage {
+  opacity: 0.75;
+}
+
+.iconLabel {
+  font-family: var(--font-system);
+  font-size: var(--font-size-icon-label);
+  text-align: center;
+  word-wrap: break-word;
+  max-width: 100%;
+  padding: 3px 6px;
+  line-height: 1.3;
+  background-color: transparent;
+  color: var(--mac-black);
+  font-weight: 500;
+}
+
+.icon.selected .iconLabel {
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+}

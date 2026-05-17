@@ -1,0 +1,507 @@
+.projectView {
+  width: 100vw;
+  height: calc(100vh - var(--menu-bar-height));
+  background-color: var(--mac-white);
+  margin-top: var(--menu-bar-height);
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  height: 40px;
+  background-color: var(--mac-gray-light);
+  border-bottom: var(--border-medium);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 12px;
+}
+
+.backButton {
+  padding: 6px 16px;
+  background-color: var(--mac-white);
+  border: var(--border-medium);
+  font-family: var(--font-system);
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.backButton:hover {
+  background-color: var(--mac-gray-medium);
+}
+
+.backButton:active {
+  background-color: var(--mac-gray-dark);
+}
+
+.settingsButton,
+.newTaskButton {
+  padding: 6px 16px;
+  background-color: var(--mac-white);
+  border: var(--border-medium);
+  font-family: var(--font-system);
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.settingsButton:hover,
+.newTaskButton:hover {
+  background-color: var(--mac-gray-medium);
+}
+
+.settingsButton:active,
+.newTaskButton:active {
+  background-color: var(--mac-gray-dark);
+}
+
+.newTaskButton {
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.newTaskButton:hover {
+  background-color: #333;
+}
+
+.breadcrumb {
+  font-family: var(--font-system);
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--mac-black);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.separator {
+  color: #666;
+}
+
+.content {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+}
+
+.projectHeader {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: var(--border-thin);
+}
+
+.projectTitle {
+  font-family: var(--font-system);
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.projectMeta {
+  font-family: var(--font-system);
+  font-size: 12px;
+  color: #666;
+}
+
+.instructions {
+  padding: 12px 16px;
+  background-color: #F7F7F7;
+  border: var(--border-medium);
+  font-family: var(--font-system);
+  font-size: 12px;
+  color: var(--mac-black);
+  margin-bottom: 20px;
+}
+
+.instructions strong {
+  font-weight: bold;
+}
+
+.canvasContainer {
+  position: relative;
+}
+
+.canvas {
+  position: relative;
+  min-height: 600px;
+  height: calc(100vh - 250px);
+  background-color: #FAFAFA;
+  border: var(--border-medium);
+  overflow: hidden;
+}
+
+.connectionCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.connectionLine {
+  stroke: #2196F3;
+  stroke-width: 2;
+  fill: none;
+}
+
+.connectionDetachButton {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background-color: var(--mac-white);
+  border: var(--border-medium);
+  border-radius: 50%;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.connectionDetachButton span {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  top: 9px;
+  height: 2px;
+  background-color: var(--mac-black);
+}
+
+.connectionDetachButton:hover {
+  background-color: var(--mac-black);
+}
+
+.connectionDetachButton:hover span {
+  background-color: var(--mac-white);
+}
+
+.agentCard {
+  position: absolute;
+  width: 180px;
+  min-height: 132px;
+  background-color: var(--mac-white);
+  border: var(--border-medium);
+  padding: 12px;
+  cursor: grab;
+  transition: transform 0.3s ease, box-shadow 0.2s ease;
+  z-index: 10;
+  user-select: none;
+}
+
+.agentCard:hover {
+  background-color: #F5F5F5;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.agentCard.selectedAgent {
+  box-shadow: 0 0 0 3px var(--mac-black);
+}
+
+.agentCard.dragging {
+  opacity: 0.7;
+  cursor: grabbing;
+  z-index: 1000;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+  transition: none;
+}
+
+.agentCard.dropTarget {
+  border-color: #4CAF50;
+  border-width: 3px;
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  background-color: #E8F5E9;
+}
+
+.agentCard.taskDropTarget {
+  border-style: dashed;
+  border-width: 3px;
+  background-color: #FFF9C4;
+  box-shadow: 0 0 0 4px rgba(255, 214, 0, 0.35);
+}
+
+.agentIcon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agentName {
+  font-family: var(--font-system);
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.agentDescription {
+  font-family: var(--font-system);
+  font-size: 10px;
+  color: #666;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom: 6px;
+}
+
+.agentStatus {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-system);
+  font-size: 10px;
+}
+
+.agentMetrics {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #E0E0E0;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.taskQueue {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #D8D8D8;
+}
+
+.taskQueueLabel {
+  font-family: var(--font-system);
+  font-size: 8px;
+  font-weight: bold;
+  letter-spacing: 0;
+  margin-bottom: 3px;
+}
+
+.queuedTask {
+  font-family: var(--font-system);
+  font-size: 9px;
+  line-height: 1.25;
+  background-color: #FFF9C4;
+  border: 1px solid #111;
+  padding: 2px 2px 2px 4px;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.taskQueueItems {
+  max-height: 54px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.queuedTaskTitle {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deleteQueuedTaskButton {
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  flex: 0 0 auto;
+  background-color: var(--mac-white);
+  border: 1px solid var(--mac-black);
+  color: var(--mac-black);
+  font-family: var(--font-system);
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 10px;
+  cursor: pointer;
+}
+
+.deleteQueuedTaskButton:hover {
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.taskNote {
+  position: absolute;
+  width: 190px;
+  height: 148px;
+  background-color: #FFF5A8;
+  border: var(--border-medium);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+  z-index: 80;
+}
+
+.taskNote::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  background:
+    linear-gradient(135deg, transparent 0 50%, #D8C85C 50%),
+    linear-gradient(135deg, transparent 0 50%, var(--mac-black) 50% 58%, transparent 58%);
+}
+
+.taskDragging {
+  cursor: grabbing;
+  z-index: 1200;
+  transform: rotate(-1deg);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.28);
+}
+
+.taskTab {
+  height: 26px;
+  background-color: #FFE66D;
+  border-bottom: var(--border-thin);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  font-family: var(--font-system);
+  font-size: 10px;
+  font-weight: bold;
+  cursor: grab;
+  user-select: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taskTab > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taskPin {
+  width: 8px;
+  height: 8px;
+  background-color: var(--mac-black);
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.deleteTaskButton {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  flex: 0 0 auto;
+  background-color: var(--mac-white);
+  border: 1px solid var(--mac-black);
+  color: var(--mac-black);
+  font-family: var(--font-system);
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 12px;
+  cursor: pointer;
+}
+
+.deleteTaskButton:hover {
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.taskTextarea {
+  width: 100%;
+  height: calc(100% - 26px);
+  border: 0;
+  resize: none;
+  outline: none;
+  padding: 10px;
+  background-color: transparent;
+  color: var(--mac-black);
+  font-family: var(--font-system);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.taskTextarea::placeholder {
+  color: #6D641E;
+}
+
+.metricItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-system);
+  font-size: 9px;
+  color: #666;
+  background-color: #F5F5F5;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.metricIcon {
+  font-size: 10px;
+}
+
+.metricText {
+  font-weight: 500;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: var(--border-thin);
+}
+
+.statusDot.active {
+  background-color: #4CAF50;
+}
+
+.statusDot.inactive {
+  background-color: #999;
+}
+
+.statusDot.error {
+  background-color: #F44336;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.emptyState p {
+  font-family: var(--font-system);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.emptyState button {
+  padding: 8px 24px;
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+  border: var(--border-medium);
+  font-family: var(--font-system);
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.emptyState button:hover {
+  background-color: #333;
+}

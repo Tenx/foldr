@@ -1,0 +1,111 @@
+.menuBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--menu-bar-height);
+  background-color: var(--mac-white);
+  border-bottom: var(--border-medium);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  z-index: var(--z-menu-bar);
+  font-family: var(--font-system);
+  font-size: var(--font-size-menu);
+  user-select: none;
+}
+
+.logo {
+  height: 100%;
+  padding: 2px 14px 0 2px;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-system);
+  font-size: var(--font-size-menu);
+  font-weight: 800;
+  color: var(--mac-black);
+  letter-spacing: 0;
+}
+
+.backButton {
+  padding: 2px 12px;
+  margin-right: 12px;
+  background-color: var(--mac-white);
+  border: var(--border-thin);
+  font-family: var(--font-system);
+  font-size: var(--font-size-menu);
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--mac-black);
+}
+
+.backButton:hover {
+  background-color: var(--mac-gray-light);
+}
+
+.backButton:active {
+  background-color: var(--mac-gray-medium);
+}
+
+.menuItem {
+  padding: 3px 14px;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+  border: none;
+  font-family: var(--font-system);
+  font-size: var(--font-size-menu);
+  color: var(--mac-black);
+  font-weight: 500;
+}
+
+.menuItem:hover,
+.menuItem.active {
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--mac-white);
+  border: var(--border-medium);
+  min-width: 180px;
+  z-index: var(--z-menu-dropdown);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.dropdownItem {
+  padding: 6px 20px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-system);
+  font-size: var(--font-size-menu);
+  color: var(--mac-black);
+  white-space: nowrap;
+}
+
+.dropdownItem:hover {
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.dropdownItem.disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.dropdownItem.disabled:hover {
+  background-color: var(--mac-white);
+  color: var(--mac-black);
+}
+
+.separator {
+  height: 1px;
+  background-color: var(--mac-black);
+  margin: 2px 0;
+}

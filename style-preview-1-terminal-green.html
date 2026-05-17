@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview 1: Terminal Green</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0d1117;
+            color: #39d353;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Scan line effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                transparent,
+                transparent 2px,
+                rgba(57, 211, 83, 0.03) 2px,
+                rgba(57, 211, 83, 0.03) 4px
+            );
+            pointer-events: none;
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }
+
+        .terminal {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            border: 2px solid #39d353;
+            border-radius: 4px;
+            box-shadow:
+                0 0 20px rgba(57, 211, 83, 0.3),
+                0 0 40px rgba(57, 211, 83, 0.1);
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .terminal-header {
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1em;
+            background: #39d353;
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(57, 211, 83, 0.5);
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .command {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .command::before {
+            content: '>';
+            color: #58a6ff;
+            margin-right: 0.5rem;
+        }
+
+        .output {
+            font-size: clamp(0.8rem, 1.3vw, 0.95rem);
+            opacity: 0.6;
+            margin-left: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(57, 211, 83, 0.1);
+            border: 1px solid #39d353;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            border-radius: 3px;
+            margin-top: 1rem;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            opacity: 0.5;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="terminal-header">
+            ~/foldr/presentation.sh<span class="cursor"></span>
+        </div>
+
+        <h1>$ ./foldr</h1>
+        <div class="subtitle">A Retro OS for AI Agents</div>
+
+        <div class="command">init_desktop --year=1984</div>
+        <div class="output">✓ Loading Mac System 1 interface...</div>
+        <div class="output">✓ Mounting agent filesystem</div>
+
+        <div class="command">ls /departments</div>
+        <div class="output">Marketing/ Sales/ Executive/</div>
+
+        <div class="command">cat README.md</div>
+        <div class="output">Manage AI agents like you manage folders.</div>
+        <div class="output">Drag, drop, connect. No complexity.</div>
+
+        <span class="badge">TERMINAL GREEN PREVIEW</span>
+
+        <div class="footer">
+            Press ENTER to boot Foldr →
+        </div>
+    </div>
+</body>
+</html>

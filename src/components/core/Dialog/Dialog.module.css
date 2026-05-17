@@ -1,0 +1,169 @@
+.dialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-dialog);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dialog {
+  background-color: var(--mac-white);
+  border: var(--border-medium);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+  min-width: 400px;
+  max-width: 600px;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.titleBar {
+  height: 22px;
+  background: var(--pattern-title-bar-active);
+  border-bottom: var(--border-medium);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  user-select: none;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-system);
+  font-size: var(--font-size-window-title);
+  font-weight: bold;
+  color: var(--mac-black);
+}
+
+.content {
+  padding: 20px;
+  font-family: var(--font-system);
+  font-size: var(--font-size-content);
+  line-height: 1.5;
+}
+
+.content h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.content p {
+  margin-bottom: 12px;
+}
+
+.instructionList {
+  margin: 16px 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.instructionItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding: 8px;
+  background-color: var(--mac-gray-light);
+  border: var(--border-thin);
+}
+
+.instructionNumber {
+  width: 24px;
+  height: 24px;
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 12px;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.instructionText {
+  flex: 1;
+}
+
+.instructionText strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.buttonBar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: var(--border-thin);
+  background-color: var(--mac-gray-light);
+}
+
+.button {
+  padding: 6px 20px;
+  background-color: var(--mac-white);
+  border: var(--border-medium);
+  font-family: var(--font-system);
+  font-size: var(--font-size-button);
+  font-weight: bold;
+  cursor: pointer;
+  min-width: 100px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  background-color: var(--mac-gray-light);
+}
+
+.button:active {
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transform: translateY(1px);
+}
+
+.button.primary {
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.button.primary:hover {
+  background-color: #333;
+}
+
+.dontShowAgain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  font-size: 11px;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.dontShowAgain input[type="checkbox"] {
+  cursor: pointer;
+}

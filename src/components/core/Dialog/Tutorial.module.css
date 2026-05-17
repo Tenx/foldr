@@ -1,0 +1,220 @@
+.tutorialOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: calc(var(--z-dialog) + 100);
+  pointer-events: none;
+}
+
+.spotlight {
+  position: absolute;
+  border: 3px solid #FFD700;
+  background-color: rgba(255, 215, 0, 0.1);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7),
+              0 0 20px rgba(255, 215, 0, 0.5),
+              inset 0 0 20px rgba(255, 215, 0, 0.3);
+  pointer-events: auto;
+  animation: pulse 2s ease-in-out infinite;
+  transition: all 0.5s ease-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(255, 215, 0, 0.5),
+                inset 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(255, 215, 0, 0.8),
+                inset 0 0 30px rgba(255, 215, 0, 0.5);
+  }
+}
+
+.instructionBox {
+  position: absolute;
+  background-color: var(--mac-white);
+  border: 3px solid var(--mac-black);
+  padding: 16px 20px;
+  min-width: 280px;
+  max-width: 400px;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+  z-index: calc(var(--z-dialog) + 101);
+}
+
+.instructionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stepNumber {
+  width: 28px;
+  height: 28px;
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.instructionTitle {
+  font-family: var(--font-system);
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--mac-black);
+}
+
+.instructionText {
+  font-family: var(--font-system);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--mac-black);
+  margin-bottom: 16px;
+}
+
+.instructionButtons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.tutorialButton {
+  padding: 6px 16px;
+  background-color: var(--mac-white);
+  border: 2px solid var(--mac-black);
+  font-family: var(--font-system);
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.tutorialButton:hover {
+  background-color: var(--mac-gray-light);
+}
+
+.tutorialButton.primary {
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.tutorialButton.primary:hover {
+  background-color: #333;
+}
+
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.arrow::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background-color: #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.arrow::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Arrow pointing down */
+.arrow.down::before {
+  height: 60px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arrow.down::after {
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 12px 8px 0 8px;
+  border-color: #FFD700 transparent transparent transparent;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+}
+
+/* Arrow pointing up */
+.arrow.up::before {
+  height: 60px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arrow.up::after {
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 8px 12px 8px;
+  border-color: transparent transparent #FFD700 transparent;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+}
+
+/* Arrow pointing right */
+.arrow.right::before {
+  width: 60px;
+  height: 3px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow.right::after {
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 8px 0 8px 12px;
+  border-color: transparent transparent transparent #FFD700;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+}
+
+/* Arrow pointing left */
+.arrow.left::before {
+  width: 60px;
+  height: 3px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow.left::after {
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 8px 12px 8px 0;
+  border-color: transparent #FFD700 transparent transparent;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+}
+
+.skipTutorial {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  text-decoration: underline;
+  pointer-events: auto;
+}
+
+.skipTutorial:hover {
+  color: rgba(255, 255, 255, 1);
+}

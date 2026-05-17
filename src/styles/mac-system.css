@@ -1,0 +1,114 @@
+/* Mac System 1 Design System */
+
+:root {
+  /* Colors - Mac System with subtle grays */
+  --mac-black: #000000;
+  --mac-white: #FFFFFF;
+  --mac-gray-light: #F5F5F5;
+  --mac-gray-medium: #E8E8E8;
+  --mac-gray-dark: #CCCCCC;
+
+  /* Typography - Clear, readable fonts */
+  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-size-menu: 13px;
+  --font-size-window-title: 13px;
+  --font-size-icon-label: 11px;
+  --font-size-content: 13px;
+  --font-size-button: 12px;
+  --line-height: 1.4;
+
+  /* Spacing & Layout */
+  --menu-bar-height: 20px;
+  --window-title-bar-height: 19px;
+  --window-border-width: 2px;
+  --icon-size: 56px;
+  --icon-label-max-width: 92px;
+  --desktop-padding: 16px;
+  --grid-size: 80px;
+
+  /* Borders */
+  --border-thin: 1px solid var(--mac-black);
+  --border-medium: 2px solid var(--mac-black);
+
+  /* Patterns */
+  --pattern-title-bar-active: repeating-linear-gradient(
+    45deg,
+    var(--mac-black) 0px,
+    var(--mac-black) 1px,
+    var(--mac-white) 1px,
+    var(--mac-white) 2px
+  );
+
+  --pattern-title-bar-inactive: repeating-linear-gradient(
+    90deg,
+    var(--mac-white) 0px,
+    var(--mac-white) 2px,
+    var(--mac-black) 2px,
+    var(--mac-black) 3px
+  );
+
+  --pattern-selected: var(--mac-black);
+
+  /* Desktop pattern - subtle texture */
+  --pattern-desktop: repeating-linear-gradient(
+    0deg,
+    var(--mac-gray-light) 0px,
+    var(--mac-gray-light) 1px,
+    var(--mac-gray-medium) 1px,
+    var(--mac-gray-medium) 2px
+  );
+
+  /* Z-index layers */
+  --z-desktop: 0;
+  --z-icons: 10;
+  --z-menu-bar: 1000;
+  --z-menu-dropdown: 1001;
+  --z-windows-base: 100;
+  --z-dialog: 2000;
+}
+
+/* Global font smoothing for clear rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Mac System cursor */
+body {
+  cursor: default;
+}
+
+/* Utility classes */
+.mac-border {
+  border: var(--border-medium);
+}
+
+.mac-border-thin {
+  border: var(--border-thin);
+}
+
+.mac-text {
+  font-family: var(--font-system);
+  font-size: var(--font-size-content);
+  line-height: var(--line-height);
+  color: var(--mac-black);
+}
+
+.mac-inverted {
+  background-color: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.pixel-perfect {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
