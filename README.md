@@ -51,4 +51,4 @@ This project prioritizes:
 
 ## License
 
-MIT
+MIT License — see [LICENSE](LICENSE) for details.
